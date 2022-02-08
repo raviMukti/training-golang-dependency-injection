@@ -26,3 +26,19 @@ func InitializedFooBarService() *FooBarService {
 	wire.Build(fooSet, barSet, NewFooBarService)
 	return nil
 }
+
+// Salah
+// func InitializeHelloService() *HelloService {
+// 	wire.Build(NewSayHelloService, NewSayHelloImpl)
+// 	return nil
+// }
+
+var helloSet = wire.NewSet(
+	NewSayHelloImpl,
+	wire.Bind(new(SayHello), new(*SayHelloImpl)),
+)
+
+func InitializeHelloService() *HelloService {
+	wire.Build(helloSet, NewSayHelloService)
+	return nil
+}
